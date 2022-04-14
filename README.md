@@ -1,4 +1,6 @@
-# tail
+# CChat 
+![](./assets/img/logo.svg)
+<img src="./assets/img/logo.svg" alt="">
 
 ## Build Setup
 
