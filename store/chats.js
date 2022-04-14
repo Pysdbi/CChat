@@ -151,12 +151,6 @@ export const mutations = {
     pushMessage: (state, payload = { chatId: -1, isSelf: true, message: null }) => {
         const lastBlockInd = state.chats.find(x => x.id === payload.chatId).history?.length - 1 || -1;
         // eslint-disable-next-line no-console
-        console.log(lastBlockInd);
-        // if(state.chats.find(x => x.id === payload.chatId).history.length)
-        //     state.chats.find(x=>x.id === payload.chatId).history.push({
-        //         ...(payload.isSelf && ({ isSelf: true })),
-        //         messages: []
-        //     })
         if(lastBlockInd >= 0){
             const lastBlock = state.chats.find(x => x.id === payload.chatId).history[lastBlockInd];
             if (lastBlock.isSelf === payload.isSelf) {
