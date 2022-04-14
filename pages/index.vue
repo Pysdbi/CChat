@@ -59,8 +59,8 @@
                             v-for="(msg, msgInd) in blockMessage.messages"
                             :key="blockMessage.login + ind + '_' + msgInd"
                         >
-                            <span
-                                class="px-4 py-2 rounded-lg inline-block"
+                            <div
+                                class="px-4 py-2 rounded-lg inline-block flex flex-col"
                                 :class="{
                                     'bg-blue-600 text-white': blockMessage.isSelf,
                                     'bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-200': !blockMessage.isSelf,
@@ -68,8 +68,14 @@
                                     'rounded-bl-none': !blockMessage.isSelf && msgInd === blockMessage.messages.length - 1,
                                 }"
                             >
-                                {{ msg }}
-                            </span>
+                                {{ msg.content }}
+                                <div
+                                    class="text-[.65rem] flex justify-end"
+                                    :class="[blockMessage.isSelf ? 'text-gray-300': 'text-gray-500']"
+                                >
+                                    {{ msg.dispatchTime }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <v-avatar
@@ -155,7 +161,7 @@ export default {
             return this.$store.getters["messenger/getCurrentChat"];
         },
         chatHistoryChanged() {
-            return this.chat?.history?.reduce((x, y) => x.messages?.length + y.messages?.length);
+            return this.chat?.history?.reduce((x, y) => x.messages?.length + y.messages?.length, 0);
         },
 
         disableSendBtn() {
@@ -182,8 +188,8 @@ export default {
             });
         },
 
-        exitChat(){
-            this.changeCurrentChat(null)
+        exitChat() {
+            this.changeCurrentChat(null);
             this.inputMessage = null;
         },
 

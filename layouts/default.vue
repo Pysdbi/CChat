@@ -161,17 +161,17 @@
                             <div
                                 class="ml-auto grid grid-cols-2 grid-rows-2 items-center justify-items-center">
                                 <svg
-                                    v-if="!chat.lastMessage.isFromSelf"
+                                    v-if="!chat.lastMessage.isSelf"
                                     class="h-4 text-blue-500" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                     fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
                                     <path d="M5 12l5 5l10 -10" />
                                 </svg>
                                 <div
-                                    class="max-w-[64px] min-w-[32px] h-4 text-gray-500 text-[.65rem] flex justify-end"
-                                    :class="{'col-span-2': chat.lastMessage.isFromSelf}"
+                                    class="max-w-[64px] min-w-[32px] text-gray-500 text-[.65rem] flex justify-end"
+                                    :class="{'col-span-2': chat.lastMessage.isSelf}"
                                 >
-                                    {{ chat.lastMessage.dateOrTime }}
+                                    {{ chat.lastMessage.dispatchTime }}
                                 </div>
                             </div>
                         </li>
@@ -182,17 +182,7 @@
                 <div
                     class="h-[48px] border-t border-gray-900/20 dark:border-white/20 flex items-center">
                     <div class="cursor-pointer select-none" @click="toggleTheme">
-                        <div v-if="$colorMode.preference === 'dark'">
-                            <!-- Dark -->
-                            <svg
-                                class="h-8 w-8 text-yellow-400" width="24" height="24" viewBox="0 0 24 24"
-                                stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <path d="M16.2 4a9.03 9.03 0 1 0 3.9 12a6.5 6.5 0 1 1 -3.9 -12" />
-                            </svg>
-                        </div>
-                        <div v-else>
+                        <div v-if="$colorMode.preference === 'light'">
                             <!-- Light -->
                             <svg
                                 class="h-8 w-8 text-gray-900" width="24" height="24" viewBox="0 0 24 24"
@@ -202,6 +192,16 @@
                                 <circle cx="12" cy="12" r="4" />
                                 <path
                                     d="M3 12h1M12 3v1M20 12h1M12 20v1M5.6 5.6l.7 .7M18.4 5.6l-.7 .7M17.7 17.7l.7 .7M6.3 17.7l-.7 .7" />
+                            </svg>
+                        </div>
+                        <div v-else>
+                            <!-- Dark -->
+                            <svg
+                                class="h-8 w-8 text-yellow-400" width="24" height="24" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" />
+                                <path d="M16.2 4a9.03 9.03 0 1 0 3.9 12a6.5 6.5 0 1 1 -3.9 -12" />
                             </svg>
                         </div>
                     </div>

@@ -4,8 +4,8 @@
  * @returns {{
  *      currentChat: {
  *          lastMessage: {
- *              isFromSelf: boolean,
- *              dateOrTime: string,
+ *              isSelf: boolean,
+ *              dispatchTime: string,
  *              content: string,
  *              status: string
  *          },
@@ -41,7 +41,7 @@ export const actions = {
 
 
         // От 10 до 60 секунд собеседник ответит
-        const timeoutAns = (Math.random() * (10 - 10) + 10);
+        const timeoutAns = (Math.random() * (12 - 10) + 10);
         setTimeout(
             (chatId, message) => {
                 context.commit("chats/pushMessage", {
